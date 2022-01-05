@@ -1,0 +1,6 @@
+@use "../../scss/variable";
+
+.button {
+  border-radius: 5px;
+  background: variable.$bg-primary;
+}

@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  img {
+    margin: 0 1rem;
+  }
+
+  img:hover {
+    cursor: pointer;
+  }
+}
+
+.twitter {
+  height: 35px;
+}
+
+.discord {
+  height: 50px;
+}
+
+.reddit {
+  height: 50px;
+}

@@ -1,0 +1,52 @@
+@use "../../scss/variable";
+
+.header {
+  padding: 0.75rem 1rem;
+  width: 90%;
+  height: 80px;
+
+  img {
+    height: 100%;
+  }
+
+  img:hover {
+    cursor: pointer;
+    animation-name: pin;
+    animation-duration: 1.5s;
+  }
+}
+
+.wrapper {
+  background: variable.$bg-primary;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  border-radius: 20px;
+  background: variable.$btn-primary;
+  border: 0;
+  width: 300px;
+  padding: 0.5rem 1rem;
+  color: variable.$text-secondary;
+}
+
+.button:hover {
+  background: variable.$btn-primary-hover;
+  cursor: pointer;
+}
+
+@keyframes pin {
+  25% {
+    transform: translateY(0%) rotate(-26deg);
+  }
+  50% {
+    transform: translateY(-10%) rotate(-26deg);
+  }
+  65% {
+    transform: translateY(0%) rotate(-26deg);
+  }
+  100% {
+    transform: translateY(0%) rotate(0deg);
+  }
+}

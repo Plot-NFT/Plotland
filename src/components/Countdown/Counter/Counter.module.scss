@@ -1,0 +1,87 @@
+@use "../../../scss/variable";
+
+.counterWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.counterBox {
+  background: variable.$bg-secondary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.2rem;
+  height: 100%;
+  min-width: 6rem;
+  padding: 0.5rem 1rem;
+
+  .time {
+    color: #fafafa;
+    font-size: 2rem;
+  }
+
+  .label {
+    color: #fafafa;
+    font-size: 1rem;
+  }
+}
+
+.timeDivider {
+  color: variable.$text-primary;
+  font-size: 2rem;
+}
+
+.timeDividerHI {
+  color: variable.$text-primary;
+  font-size: 2rem;
+}
+
+@media (max-width: 450px) {
+  .counterWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .counterBox {
+    background: variable.$bg-secondary;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    height: 100%;
+    min-width: 6rem;
+    padding: 0.5rem 1rem;
+
+    .time {
+      color: #fafafa;
+      font-size: 2rem;
+    }
+
+    .label {
+      color: #fafafa;
+      font-size: 1rem;
+    }
+  }
+
+  .timeDividerHI {
+    display: none;
+  }
+}

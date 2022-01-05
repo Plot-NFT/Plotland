@@ -1,0 +1,54 @@
+@use "../../scss/variable";
+
+.wrapper {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.form {
+  padding: 0 1rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+
+  label {
+    font-weight: 600;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.small {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.button {
+  border-radius: 10px;
+  background: variable.$btn-primary;
+  border: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  color: variable.$text-secondary;
+}
+
+.button:hover {
+  background: variable.$btn-primary-hover;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background: variable.$btn-primary-disabled;
+  cursor: not-allowed;
+}
