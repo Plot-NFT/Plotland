@@ -8,17 +8,17 @@ const MetamaskButton = ({ chainState }) => {
   const [chainId, setChainId] = chainState;
   const [user, dispatch] = useUser();
 
-  // const POLYGON_MUMBAI_PARAMS = {
-  //   chainId: "0x13881",
-  //   chainName: "Polygon Testnet Mumbai",
-  //   nativeCurrency: {
-  //     name: "Matic",
-  //     symbol: "MATIC",
-  //     decimals: 18,
-  //   },
-  //   rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
-  //   blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
-  // };
+  const POLYGON_MUMBAI_PARAMS = {
+    chainId: "0x13881",
+    chainName: "Polygon Testnet Mumbai",
+    nativeCurrency: {
+      name: "Matic",
+      symbol: "MATIC",
+      decimals: 18,
+    },
+    rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
+    blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+  };
 
   const detectProvider = () => {
     if (!window.ethereum) {
@@ -28,11 +28,22 @@ const MetamaskButton = ({ chainState }) => {
     }
   };
 
+  const switchNetwork = async () => {
+    if (chainId !== "80001") {
+      const tes = await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [POLYGON_MUMBAI_PARAMS],
+      });
+    }
+  };
+
   const connectWallet = async () => {
     const ethereum = detectProvider();
 
     if (ethereum) {
       try {
+        await switchNetwork();
+
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
@@ -53,15 +64,6 @@ const MetamaskButton = ({ chainState }) => {
       }
     }
   };
-
-  // const addBlockchainNetwork = async () => {
-  //   if (chainId !== "80001") {
-  //     await window.ethereum.request({
-  //       method: "wallet_addEthereumChain",
-  //       params: [POLYGON_MUMBAI_PARAMS],
-  //     });
-  //   }
-  // };
 
   React.useEffect(() => {
     const ethereum = detectProvider();
@@ -86,12 +88,6 @@ const MetamaskButton = ({ chainState }) => {
           Connect Metamask
         </button>
       )}
-
-      {/* {user.wallet && (
-        <button className={styles.button} onClick={addBlockchainNetwork}>
-          Switch to Polygon Testnet Mumbai Network
-        </button>
-      )} */}
 
       {user.wallet && (
         <div>

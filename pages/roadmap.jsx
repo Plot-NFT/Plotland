@@ -4,7 +4,7 @@ import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import Container from "components/Container/Container";
 
-const roadmap = () => {
+const Roadmap = () => {
   return (
     <>
       <Head>
@@ -15,7 +15,7 @@ const roadmap = () => {
       <Header />
 
       <Container>
-        <h1>This is roadmap Page</h1>
+        <h1>This is Roadmap Page</h1>
       </Container>
 
       <Footer />
@@ -23,4 +23,4 @@ const roadmap = () => {
   );
 };
 
-export default roadmap;
+export default Roadmap;

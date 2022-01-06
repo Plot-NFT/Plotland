@@ -1,4 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
+import { FaEnvelope } from "react-icons/fa";
 import styles from "./SocialMedia.module.scss";
 
 const SocialMedia = () => {
@@ -12,7 +13,7 @@ const SocialMedia = () => {
         <img
           className={styles.discord}
           src="/assets/discord.png"
-          alt="discord Logo"
+          alt="Discord Logo"
         />
       </a>
 
@@ -28,11 +29,23 @@ const SocialMedia = () => {
         />
       </a>
 
+      <a target="_blank" rel="noreferrer" href="mailto:plotnft@outlook.com">
+        <FaEnvelope className={styles.email} />
+      </a>
+
+      <a target="_blank" rel="noreferrer" href="https://github.com/Plot-NFT">
+        <img
+          className={styles.github}
+          src="/assets/github.png"
+          alt="Github Logo"
+        />
+      </a>
+
       <a target="_blank" rel="noreferrer" href="https://twitter.com/plot_NFT">
         <img
           className={styles.twitter}
           src="/assets/twitter.png"
-          alt="twitter Logo"
+          alt="Twitter Logo"
         />
       </a>
     </div>

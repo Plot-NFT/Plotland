@@ -1,0 +1,28 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6rem;
+
+  img {
+    width: 60px;
+    animation-name: pin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes pin {
+  25% {
+    transform: translateY(0%) rotate(-26deg);
+  }
+  50% {
+    transform: translateY(-10%) rotate(-26deg);
+  }
+  65% {
+    transform: translateY(0%) rotate(-26deg);
+  }
+  100% {
+    transform: translateY(0%) rotate(0deg);
+  }
+}

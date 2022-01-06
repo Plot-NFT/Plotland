@@ -4,7 +4,7 @@ import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import Container from "components/Container/Container";
 
-const resources = () => {
+const Resources = () => {
   return (
     <>
       <Head>
@@ -15,7 +15,7 @@ const resources = () => {
       <Header />
 
       <Container>
-        <h1>This is resources Page</h1>
+        <h1>This is Resources Page</h1>
       </Container>
 
       <Footer />
@@ -23,4 +23,4 @@ const resources = () => {
   );
 };
 
-export default resources;
+export default Resources;
