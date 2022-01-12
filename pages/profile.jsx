@@ -242,45 +242,49 @@ const Profile = () => {
                 <FaUserSecret size="3rem" />
                 <MetamaskButton chainState={[chainId, setChainId]} />
 
-                <h2 className="fw-bold my-3">Collection</h2>
+                {user.wallet && (
+                  <>
+                    <MintButton className="mt-3" />
 
-                <Row>
-                  <Col>
-                    <CoordinateUnit>24, 12</CoordinateUnit>
-                  </Col>
+                    <h2 className="fw-bold my-3">Collection</h2>
 
-                  <Col>
-                    <CoordinateUnit>-100, -12</CoordinateUnit>
-                  </Col>
+                    <Row>
+                      <Col>
+                        <CoordinateUnit>24, 12</CoordinateUnit>
+                      </Col>
 
-                  <Col>
-                    <CoordinateUnit>99, 0</CoordinateUnit>
-                  </Col>
+                      <Col>
+                        <CoordinateUnit>-100, -12</CoordinateUnit>
+                      </Col>
 
-                  <Col>
-                    <CoordinateUnit>180, 66</CoordinateUnit>
-                  </Col>
-                </Row>
+                      <Col>
+                        <CoordinateUnit>99, 0</CoordinateUnit>
+                      </Col>
 
-                <Row className="mt-3">
-                  <Col>
-                    <CoordinateUnit>24, 12</CoordinateUnit>
-                  </Col>
+                      <Col>
+                        <CoordinateUnit>180, 66</CoordinateUnit>
+                      </Col>
+                    </Row>
 
-                  <Col>
-                    <CoordinateUnit>-100, -12</CoordinateUnit>
-                  </Col>
+                    <Row className="mt-3">
+                      <Col>
+                        <CoordinateUnit>24, 12</CoordinateUnit>
+                      </Col>
 
-                  <Col>
-                    <CoordinateUnit>99, 0</CoordinateUnit>
-                  </Col>
+                      <Col>
+                        <CoordinateUnit>-100, -12</CoordinateUnit>
+                      </Col>
 
-                  <Col>
-                    <CoordinateUnit>180, 66</CoordinateUnit>
-                  </Col>
-                </Row>
+                      <Col>
+                        <CoordinateUnit>99, 0</CoordinateUnit>
+                      </Col>
 
-                <MintButton className="mt-5" />
+                      <Col>
+                        <CoordinateUnit>180, 66</CoordinateUnit>
+                      </Col>
+                    </Row>
+                  </>
+                )}
               </main>
             )}
           </>

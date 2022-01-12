@@ -1,0 +1,10 @@
+.blackLine {
+  display: flex;
+  justify-content: center;
+
+  div {
+    background: #1f1f1f;
+    width: 4px;
+    height: 100%;
+  }
+}
