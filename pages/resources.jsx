@@ -32,8 +32,8 @@ const Resources = () => {
           <Accordion.Item eventKey="1">
             <Accordion.Header>How do I connect my Metamask?</Accordion.Header>
             <Accordion.Body>
-              To connect your Metamask, simply click the 'connect' button and
-              allow plotland.one to access your Wallet.
+              To connect your Metamask, simply click the {"'"}connect{"'"}{" "}
+              button and allow plotland.one to access your Wallet.
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="2">
@@ -41,9 +41,9 @@ const Resources = () => {
               Do you connect my E-Mail with Metamask?
             </Accordion.Header>
             <Accordion.Body>
-              No, we keep the information separated and don't collect any more
-              information than we need to supply you with your NFT. The project
-              is open source, so you can convince yourself of it.
+              No, we keep the information separated and don{"'"}t collect any
+              more information than we need to supply you with your NFT. The
+              project is open source, so you can convince yourself of it.
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="3">
@@ -64,8 +64,8 @@ const Resources = () => {
               built on and create decentralized services on a truely free,
               non-financialized space. The minimalist setup opens up unlimited
               possibilities while keeping the unit count limited through fisical
-              limitaions (We can't create any more coordinates than the planet
-              has to offer...)
+              limitaions (We can{"'"}t create any more coordinates than the
+              planet has to offer...)
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
