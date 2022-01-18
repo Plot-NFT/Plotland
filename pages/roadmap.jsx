@@ -1,12 +1,11 @@
 import * as React from "react";
 import Head from "next/head";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import Container from "components/Container/Container";
-import RoadmapItem from "components/Roadmap/Roadmap";
+import RoadMap from "components/Roadmap/Roadmap";
+import Button from "components/Button/Button";
 
 import styles from "scss/roadmap.module.scss";
 
@@ -23,41 +22,48 @@ const Roadmap = () => {
       <Container>
         <h1 className="mb-4">Roadmap</h1>
 
-        <Row className="text-center">
-          <Col lg={5}>
-            <RoadmapItem />
-          </Col>
-          <Col className={styles.blackLine} lg={2}>
-            <div></div>
-          </Col>
-          <Col lg={5}>
-            <p>Date here: 12-12-1092</p>
-          </Col>
-        </Row>
+        <RoadMap.Main>
+          <RoadMap.Content>
+            <h3>Membeli Bakso</h3>
+            <p>Memebeli bakso setiap hari hore!</p>
+          </RoadMap.Content>
 
-        <Row className="text-center">
-          <Col className="pt-3" lg={5}>
-            <p>Date here: 12-12-1092</p>
-          </Col>
-          <Col className={styles.blackLine} lg={2}>
-            <div></div>
-          </Col>
-          <Col lg={5}>
-            <RoadmapItem />
-          </Col>
-        </Row>
+          <RoadMap.Divider />
 
-        <Row className="text-center">
-          <Col lg={5}>
-            <RoadmapItem />
-          </Col>
-          <Col className={styles.blackLine} lg={2}>
-            <div></div>
-          </Col>
-          <Col className="pt-3" lg={5}>
+          <RoadMap.Date>
             <p>Date here: 12-12-1092</p>
-          </Col>
-        </Row>
+          </RoadMap.Date>
+        </RoadMap.Main>
+
+        <RoadMap.Main>
+          <RoadMap.Date>
+            <p>Date here: 12-12-1092</p>
+          </RoadMap.Date>
+
+          <RoadMap.Divider />
+
+          <RoadMap.Content>
+            <h3>Membeli Bakso</h3>
+            <p>Memebeli bakso setiap hari hore!</p>
+          </RoadMap.Content>
+        </RoadMap.Main>
+
+        <RoadMap.Main>
+          <RoadMap.Content>
+            <h3>Membeli Bakso</h3>
+            <p>Memebeli bakso setiap hari hore!</p>
+          </RoadMap.Content>
+
+          <RoadMap.Divider />
+
+          <RoadMap.Date>
+            <p>Date here: 12-12-1092</p>
+          </RoadMap.Date>
+        </RoadMap.Main>
+
+        <div className="d-flex justify-content-center">
+          <Button>Sumbit Project</Button>
+        </div>
       </Container>
 
       <Footer />

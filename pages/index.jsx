@@ -9,6 +9,7 @@ import Footer from "components/Footer/Footer";
 import MetamaskButton from "components/MetamaskButton/MetamaskButton";
 import Form from "components/Form/Form";
 import Container from "components/Container/Container";
+import Loading from "components/Loading/Loading";
 
 const Index = () => {
   const [chainId, setChainId] = React.useState(null);
@@ -223,10 +224,7 @@ const Index = () => {
 
       <Container>
         {user.status === "loading" || user.status === "idle" ? (
-          <div className="loading">
-            <img src="/assets/Plot_Logo_Black.svg" alt="plot logo" />
-            <h4>Loading...</h4>
-          </div>
+          <Loading />
         ) : (
           <>
             {walletError ? (

@@ -1,0 +1,21 @@
+@use "/src/scss/variable";
+
+.button,
+.button:hover,
+.button:active,
+.button:focus {
+  background-color: variable.$bg-secondary;
+  border: none;
+  width: 10rem;
+  box-shadow: none;
+}
+
+.button:hover {
+  filter: opacity(0.9);
+}
+
+.button:focus.button:active {
+  box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 1);
+}

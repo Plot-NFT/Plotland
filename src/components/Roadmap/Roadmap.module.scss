@@ -1,0 +1,36 @@
+.content {
+  padding: 2rem 0;
+
+  h3 {
+    font-size: 2rem;
+  }
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: 1.5rem;
+  }
+}
+
+.blackLine {
+  display: flex;
+  justify-content: center;
+
+  div {
+    position: relative;
+    background: #1f1f1f;
+    width: 4px;
+    height: 100%;
+
+    svg {
+      position: absolute;
+      font-size: 1.5rem;
+      bottom: -4px;
+      left: -10px;
+    }
+  }
+}
