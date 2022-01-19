@@ -2,9 +2,13 @@
 import * as React from "react";
 import styles from "./Alert.module.scss";
 
-const Alert = ({ children }) => {
+const Alert = ({ children, variant = "", className = "" }) => {
   return (
-    <div className={styles.alert}>
+    <div
+      className={`${className} ${styles.alert} ${
+        variant === "success" ? styles.success : ""
+      }`}
+    >
       <div className={styles.header}>{children}</div>
     </div>
   );

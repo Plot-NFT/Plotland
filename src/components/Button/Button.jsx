@@ -4,9 +4,13 @@ import BsButton from "react-bootstrap/Button";
 
 import styles from "./Button.module.scss";
 
-const Button = ({ className = "", type = "button", children }) => {
+const Button = ({ className = "", type = "button", children, ...props }) => {
   return (
-    <BsButton className={`${styles.button} ${className}`} type={type}>
+    <BsButton
+      className={`${styles.button} ${className}`}
+      type={type}
+      {...props}
+    >
       {children}
     </BsButton>
   );

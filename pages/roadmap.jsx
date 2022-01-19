@@ -1,13 +1,28 @@
 import * as React from "react";
 import Head from "next/head";
 
+import Alert from "components/Alert/Alert";
 import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import Container from "components/Container/Container";
 import RoadMap from "components/Roadmap/Roadmap";
-import Button from "components/Button/Button";
+import SubmitProject from "components/SubmitProject/SubmitProject";
 
 const Roadmap = () => {
+  const [submit, setSubmit] = React.useState({
+    status: "idle",
+    message: "",
+    error: "",
+  });
+
+  React.useEffect(() => {
+    if (submit.status === "success" || submit.status === "failed") {
+      setTimeout(() => {
+        setSubmit({ ...submit, status: "idle", message: "" });
+      }, 2000);
+    }
+  }, [submit, submit.status]);
+
   return (
     <>
       <Head>
@@ -18,8 +33,6 @@ const Roadmap = () => {
       <Header />
 
       <Container>
-        <h1 className="mb-4">Roadmap</h1>
-
         <RoadMap.Main>
           <RoadMap.Content>
             <h3>Membeli Bakso</h3>
@@ -60,8 +73,14 @@ const Roadmap = () => {
         </RoadMap.Main>
 
         <div className="d-flex justify-content-center">
-          <Button>Submit Project</Button>
+          <SubmitProject state={[submit, setSubmit]} />
         </div>
+
+        {submit.status === "success" && (
+          <Alert className="mt-3" variant="success">
+            {submit.message}
+          </Alert>
+        )}
       </Container>
 
       <Footer />
