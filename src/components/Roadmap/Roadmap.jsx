@@ -11,12 +11,21 @@ const Main = ({ children }) => {
   return <Row className="text-center">{children}</Row>;
 };
 
-const Divider = () => {
+const Divider = ({ type = "line" }) => {
   return (
     <Col className={styles.blackLine} md={2} lg={2}>
-      <div>
-        <FaArrowDown />
-      </div>
+      {type === "line" && (
+        <>
+          <div className={styles.vertical}></div>
+          <div className={styles.horizontal}></div>
+        </>
+      )}
+
+      {type === "arrow" && (
+        <div className={styles.horizontal}>
+          <FaArrowDown />
+        </div>
+      )}
     </Col>
   );
 };
@@ -29,14 +38,22 @@ const Content = ({ children }) => {
   );
 };
 
-const Date = ({ children }) => {
+const Date = ({ children, position = "right" }) => {
   return (
-    <Col className={styles.date} md={5} lg={5}>
+    <p
+      className={`${styles.date} ${
+        position === "right" ? styles.right : styles.left
+      }`}
+    >
       {children}
-    </Col>
+    </p>
   );
 };
 
-const Roadmap = { Main, Divider, Content, Date };
+const Placeholder = () => {
+  return <Col md={5} lg={5}></Col>;
+};
+
+const Roadmap = { Main, Divider, Content, Date, Placeholder };
 
 export default Roadmap;

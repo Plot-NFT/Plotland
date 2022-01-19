@@ -37,25 +37,25 @@ const Roadmap = () => {
           <RoadMap.Content>
             <h3>Membeli Bakso</h3>
             <p>Memebeli bakso setiap hari hore!</p>
+
+            <RoadMap.Date position="right">12-12-1092</RoadMap.Date>
           </RoadMap.Content>
 
           <RoadMap.Divider />
 
-          <RoadMap.Date>
-            <p>Date here: 12-12-1092</p>
-          </RoadMap.Date>
+          <RoadMap.Placeholder />
         </RoadMap.Main>
 
         <RoadMap.Main>
-          <RoadMap.Date>
-            <p>Date here: 12-12-1092</p>
-          </RoadMap.Date>
+          <RoadMap.Placeholder />
 
           <RoadMap.Divider />
 
           <RoadMap.Content>
             <h3>Membeli Bakso</h3>
             <p>Memebeli bakso setiap hari hore!</p>
+
+            <RoadMap.Date position="left">12-12-1092</RoadMap.Date>
           </RoadMap.Content>
         </RoadMap.Main>
 
@@ -63,13 +63,19 @@ const Roadmap = () => {
           <RoadMap.Content>
             <h3>Membeli Bakso</h3>
             <p>Memebeli bakso setiap hari hore!</p>
+
+            <RoadMap.Date position="right">12-12-1092</RoadMap.Date>
           </RoadMap.Content>
 
           <RoadMap.Divider />
 
-          <RoadMap.Date>
-            <p>Date here: 12-12-1092</p>
-          </RoadMap.Date>
+          <RoadMap.Placeholder />
+        </RoadMap.Main>
+
+        <RoadMap.Main>
+          <RoadMap.Content></RoadMap.Content>
+          <RoadMap.Divider type="arrow" />
+          <RoadMap.Placeholder />
         </RoadMap.Main>
 
         <div className="d-flex justify-content-center">

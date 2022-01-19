@@ -1,26 +1,38 @@
 .content {
   padding: 2rem 0;
+  position: relative;
 
   h3 {
     font-size: 2rem;
   }
 }
-
 .date {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  top: calc(50% - 16px);
+}
 
-  p {
-    font-size: 1.5rem;
-  }
+.date.right {
+  right: calc(-20% + 16px);
+}
+
+.date.left {
+  left: calc(-20% + 16px);
 }
 
 .blackLine {
+  position: relative;
   display: flex;
   justify-content: center;
 
-  div {
+  .vertical {
+    position: absolute;
+    top: calc(50% - 3px);
+    width: 1rem;
+    height: 3px;
+    background: #1f1f1f;
+  }
+
+  .horizontal {
     position: relative;
     background: #1f1f1f;
     width: 4px;
