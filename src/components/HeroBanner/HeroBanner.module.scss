@@ -1,0 +1,87 @@
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  height: 100px;
+  margin: 2rem 0;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 60px;
+      transform: rotate(-26deg);
+      animation-name: pin;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+
+  .track {
+    position: absolute;
+    overflow: hidden;
+    top: 56px;
+    width: 300px;
+
+    img {
+      position: relative;
+      width: 500px;
+      right: -500px;
+      animation-name: slide;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  .track2 {
+    position: absolute;
+    overflow: hidden;
+    top: 56px;
+    width: 300px;
+
+    img {
+      position: relative;
+      width: 500px;
+      right: -1000px;
+      animation-name: slide2;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+@keyframes pin {
+  25% {
+    transform: translateY(0%) rotate(-26deg);
+  }
+  50% {
+    transform: translateY(-70%) rotate(-26deg);
+  }
+  65% {
+    transform: translateY(-70%) rotate(-26deg);
+  }
+  100% {
+    transform: translateY(0%) rotate(-26deg);
+  }
+}
+
+@keyframes slide {
+  from {
+    right: -500px;
+  }
+  to {
+    right: 500px;
+  }
+}
+
+@keyframes slide2 {
+  from {
+    right: -1000px;
+  }
+  to {
+    right: 500px;
+  }
+}
