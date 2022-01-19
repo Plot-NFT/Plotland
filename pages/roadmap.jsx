@@ -7,8 +7,6 @@ import Container from "components/Container/Container";
 import RoadMap from "components/Roadmap/Roadmap";
 import Button from "components/Button/Button";
 
-import styles from "scss/roadmap.module.scss";
-
 const Roadmap = () => {
   return (
     <>
@@ -62,7 +60,7 @@ const Roadmap = () => {
         </RoadMap.Main>
 
         <div className="d-flex justify-content-center">
-          <Button>Sumbit Project</Button>
+          <Button>Submit Project</Button>
         </div>
       </Container>
 

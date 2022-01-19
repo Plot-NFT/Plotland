@@ -44,12 +44,18 @@ input {
   border: 1px solid variable.$bg-secondary;
 }
 
+.accordion-item {
+  background-color: transparent;
+}
+
 .accordion-button {
   color: #1f1f1f;
   font-weight: 600;
+  background-color: transparent;
 }
 
 .accordion-button:not(.collapsed) {
   color: #1f1f1f;
   font-weight: 600;
+  background-color: transparent;
 }

@@ -6,6 +6,8 @@ import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import Container from "components/Container/Container";
 
+import styles from "scss/resources.module.scss";
+
 const Resources = () => {
   return (
     <>
@@ -17,7 +19,7 @@ const Resources = () => {
       <Header />
 
       <Container>
-        <h2 className="mb-3 fw-bold">Frequently Askes Question</h2>
+        <h2 className="mb-3 fw-bold">FAQ</h2>
 
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
@@ -69,6 +71,42 @@ const Resources = () => {
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
+
+        <h2 className="my-3 fw-bold">Whitepaper</h2>
+
+        <p>
+          If you are interested to know more about Plotland, we recommend you to
+          read our{" "}
+          <a
+            className="fw-bold"
+            href="/documents/plotland-whitepaper.pdf"
+            target="_blank"
+          >
+            Whitepaper
+          </a>
+        </p>
+
+        <h2 className="my-3 fw-bold">Contract Address</h2>
+
+        <p>Plotland contract address: 0xjkj129d781eee38eu38eu</p>
+
+        <h2 className="my-3 fw-bold">Github Repository</h2>
+
+        <p>
+          We are an open-source project which mean, if you are interested, you
+          can contribute to the project.
+        </p>
+        <p>
+          Just check it out at{" "}
+          <a
+            href="https://github.com/Plot-NFT/Plotland"
+            className="fw-bold"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Github
+          </a>
+        </p>
       </Container>
 
       <Footer />
