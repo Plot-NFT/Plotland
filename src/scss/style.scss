@@ -59,3 +59,25 @@ input {
   font-weight: 600;
   background-color: transparent;
 }
+
+.pin {
+  animation-name: pin;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes pin {
+  0% {
+    transform: translateY(0%) rotate(-26deg);
+  }
+  50% {
+    transform: translateY(-70%) rotate(-26deg);
+  }
+  65% {
+    transform: translateY(-70%) rotate(-26deg);
+  }
+  100% {
+    transform: translateY(0%) rotate(-26deg);
+  }
+}
