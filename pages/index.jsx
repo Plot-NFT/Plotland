@@ -21,6 +21,7 @@ const Home = () => {
       <Header />
 
       <Container>
+        <h1 className="fw-bold">Plotland</h1>
         <HeroBanner />
 
         <h2>About Plotland</h2>
