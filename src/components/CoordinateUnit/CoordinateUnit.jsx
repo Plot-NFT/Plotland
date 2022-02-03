@@ -1,48 +1,31 @@
 /* eslint-disable react/prop-types */
 import * as React from "react";
-
-import Button from "react-bootstrap/Button";
-import Overlay from "react-bootstrap/Overlay";
-import Popover from "react-bootstrap/Popover";
+import Image from "next/image";
 
 import styles from "./CoordinateUnit.module.scss";
 
 const CoordinateUnit = ({ children }) => {
-  const [show, setShow] = React.useState(false);
-  const [target, setTarget] = React.useState(null);
-  const ref = React.useRef(null);
-
-  const handleClick = (event) => {
-    setShow(!show);
-    setTarget(event.target);
-  };
-
   return (
-    <>
-      <div ref={ref}>
-        <Button className={styles.button} onClick={handleClick}>
-          {children}
-        </Button>
+    <div className={styles.wrapper}>
+      <div className={styles.frontCard}>
+        <Image src="/assets/Plot_Logo_Black.svg" height={30} width={30} />
 
-        <Overlay
-          show={show}
-          target={target}
-          placement="top"
-          container={ref}
-          containerPadding={20}
-        >
-          <Popover>
-            <Popover.Header as="h3">View Details</Popover.Header>
-            <Popover.Body className={styles.popover}>
-              <ul>
-                <li>Etherscan</li>
-                <li>Opensea</li>
-              </ul>
-            </Popover.Body>
-          </Popover>
-        </Overlay>
+        <p>25, -5</p>
       </div>
-    </>
+      <div className={styles.backCard}>
+        <ul>
+          <li>Longitude: 25</li>
+          <li>Latitude: -5</li>
+          <li>Quadrant: 1</li>
+          <li>
+            <a href="https://www.ploygonscan.com">Polygonscan</a>
+          </li>
+          <li>
+            <a href="https://www.opensea.com">Opeansea</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import Container from "components/Container/Container";
 import HeroBanner from "components/HeroBanner/HeroBanner";
+import StatusBox from "components/StatusBox/StatusBox";
 
 const Home = () => {
   React.useEffect(() => {}, []);
@@ -44,11 +45,31 @@ const Home = () => {
           easily contribute to this new metaverse.
         </p>
 
-        <h2>Plotland NFT Stats</h2>
+        <h2 className="mt-3">Plotland NFT Stats</h2>
 
-        <div>NFT Stats</div>
+        <StatusBox.Main>
+          <StatusBox.Item>
+            <StatusBox.Header>Total Supply</StatusBox.Header>
+            <StatusBox.Text>10000000</StatusBox.Text>
+          </StatusBox.Item>
 
-        <h2>Quadrant Visualization</h2>
+          <StatusBox.Item>
+            <StatusBox.Header>Total Supply</StatusBox.Header>
+            <StatusBox.Text>10000000</StatusBox.Text>
+          </StatusBox.Item>
+
+          <StatusBox.Item>
+            <StatusBox.Header>Total Supply</StatusBox.Header>
+            <StatusBox.Text>10000000</StatusBox.Text>
+          </StatusBox.Item>
+
+          <StatusBox.Item>
+            <StatusBox.Header>Total Supply</StatusBox.Header>
+            <StatusBox.Text>10000000</StatusBox.Text>
+          </StatusBox.Item>
+        </StatusBox.Main>
+
+        <h2 className="mt-3">Quadrant Visualization</h2>
 
         <Image
           width={4000}
