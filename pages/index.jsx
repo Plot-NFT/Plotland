@@ -24,7 +24,7 @@ const Home = () => {
         <h1 className="fw-bold">Plotland</h1>
         <HeroBanner />
 
-        <h2>About Plotland</h2>
+        <h2 className="fw-bold">About Plotland</h2>
 
         <p>
           Plot is the new coordinate-based NFT platform for developers and users
@@ -46,7 +46,7 @@ const Home = () => {
           easily contribute to this new metaverse.
         </p>
 
-        <h2 className="mt-3">Plotland NFT Stats</h2>
+        <h2 className="mt-3 fw-bold">Plotland NFT Stats</h2>
 
         <StatusBox.Main>
           <StatusBox.Item>
@@ -70,12 +70,12 @@ const Home = () => {
           </StatusBox.Item>
         </StatusBox.Main>
 
-        <h2 className="mt-3">Quadrant Visualization</h2>
+        <h2 className="mt-3 fw-bold">Quadrant Visualization</h2>
 
         <Image
-          width={4000}
-          height={1548}
-          src="/assets/visualization.jpg"
+          width={2777}
+          height={1074}
+          src="/assets/visualization.png"
           alt="quadrant visualization"
         />
       </Container>

@@ -248,41 +248,17 @@ const Profile = () => {
 
                     <h2 className="fw-bold my-3">Collection</h2>
 
-                    <Row>
-                      <Col>
-                        <CoordinateUnit>24, 12</CoordinateUnit>
-                      </Col>
-
-                      <Col>
-                        <CoordinateUnit>-100, -12</CoordinateUnit>
-                      </Col>
-
-                      <Col>
-                        <CoordinateUnit>99, 0</CoordinateUnit>
-                      </Col>
-
-                      <Col>
-                        <CoordinateUnit>180, 66</CoordinateUnit>
-                      </Col>
-                    </Row>
-
-                    <Row className="mt-3">
-                      <Col>
-                        <CoordinateUnit>24, 12</CoordinateUnit>
-                      </Col>
-
-                      <Col>
-                        <CoordinateUnit>-100, -12</CoordinateUnit>
-                      </Col>
-
-                      <Col>
-                        <CoordinateUnit>99, 0</CoordinateUnit>
-                      </Col>
-
-                      <Col>
-                        <CoordinateUnit>180, 66</CoordinateUnit>
-                      </Col>
-                    </Row>
+                    <div className="d-flex gap-2 flex-wrap justify-content-around">
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                      <CoordinateUnit>25, -5</CoordinateUnit>
+                    </div>
                   </>
                 )}
               </main>
