@@ -6,18 +6,30 @@ import styles from "./HeroBanner.module.scss";
 
 const HeroBanner = () => {
   React.useEffect(() => {
+    let isAnimating = false;
     const logo = document.querySelector("img#logo");
+
+    const animateLogo = () => {
+      if (!isAnimating) {
+        logo.classList.add("pin");
+        isAnimating = true;
+
+        setTimeout(() => {
+          logo.classList.remove("pin");
+          isAnimating = false;
+        }, 1000);
+      }
+    };
+
     window.onkeydown = function (e) {
       if (e.code === "Space") {
         e.preventDefault();
 
-        logo.classList.add("pin");
-
-        setTimeout(() => {
-          logo.classList.remove("pin");
-        }, 1000);
+        animateLogo();
       }
     };
+
+    animateLogo();
   }, []);
 
   return (
