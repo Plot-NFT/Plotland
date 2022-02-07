@@ -257,7 +257,6 @@ const Profile = () => {
                       <CoordinateUnit>25, -5</CoordinateUnit>
                       <CoordinateUnit>25, -5</CoordinateUnit>
                       <CoordinateUnit>25, -5</CoordinateUnit>
-                      <CoordinateUnit>25, -5</CoordinateUnit>
                     </div>
                   </>
                 )}
