@@ -10,35 +10,65 @@ const CoordinateUnit = ({ children }) => {
       <div className={styles.innerCard}>
         <div className={styles.frontCard}>
           <div>
-            <Image src="/assets/Plot_Logo_Black.svg" height={30} width={30} />
+            <Image
+              src="/assets/Plot_Logo_Black.svg"
+              alt="logo plotland"
+              height={80}
+              width={80}
+            />
 
             <p>{children}</p>
           </div>
         </div>
         <div className={styles.backCard}>
-          <ul>
-            <li>Longitude: 25</li>
-            <li>Latitude: -5</li>
-            <li>Quadrant: 1</li>
-            <li>
+          <div className={styles.backWrapper}>
+            <Image
+              src="/assets/Plot_Logo_Black.svg"
+              alt="logo plotland"
+              height={80}
+              width={80}
+            />
+
+            <ul className="mt-3">
+              <li>
+                Longitude: <strong>25</strong>
+              </li>
+              <li>
+                Latitude: <strong>-5</strong>
+              </li>
+              <li>
+                Quadrant: <strong>1</strong>
+              </li>
+            </ul>
+
+            <div className={styles.externalLink}>
               <a
                 href="https://www.polygonscan.com"
                 target="_blank"
                 rel="noreferrer"
               >
-                Polygonscan
+                <Image
+                  src="/assets/matic.png"
+                  alt="logo matic"
+                  height={40}
+                  width={40}
+                />
               </a>
-            </li>
-            <li>
+
               <a
                 href="https://www.opensea.com"
                 target="_blank"
                 rel="noreferrer"
               >
-                Opeansea
+                <Image
+                  src="/assets/opensea.png"
+                  alt="logo opensea"
+                  height={40}
+                  width={40}
+                />
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

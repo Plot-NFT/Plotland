@@ -5,6 +5,7 @@ import Image from "react-bootstrap/Image";
 import styles from "./HeroBanner.module.scss";
 
 const HeroBanner = () => {
+  const [animate, setAnimate] = React.useState(false);
   React.useEffect(() => {
     let isAnimating = false;
     const logo = document.querySelector("img#logo");
@@ -25,27 +26,33 @@ const HeroBanner = () => {
       if (e.code === "Space") {
         e.preventDefault();
 
+        if (!animate) {
+          setAnimate(true);
+        }
+
         animateLogo();
       }
     };
 
     animateLogo();
-  }, []);
+  }, [animate]);
 
   return (
     <div className={styles.hero}>
+      {!animate && <p className={styles.info}>Press space to start!</p>}
+
       <div className={styles.logo}>
         <Image id="logo" src="/assets/Plot_Logo_Black.svg" alt="plot logo" />
       </div>
 
       <Image
-        className={styles.triangle}
+        className={`${styles.triangle} ${animate ? styles.animate : ""}`}
         src="/assets/single-triangle.png"
         alt="single triangle visual"
       />
 
       <Image
-        className={styles.doubleTriangle}
+        className={`${styles.doubleTriangle} ${animate ? styles.animate : ""}`}
         src="/assets/double-triangle.png"
         alt="double triangle visual"
       />

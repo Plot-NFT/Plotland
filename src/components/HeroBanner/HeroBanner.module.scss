@@ -8,6 +8,12 @@
   overflow: hidden;
   width: 100%;
 
+  .info {
+    position: absolute;
+    top: 20%;
+    color: #1f1f1f6b;
+  }
+
   .logo {
     position: absolute;
     display: flex;
@@ -24,7 +30,10 @@
     position: absolute;
     width: 130px;
     top: 280px;
-    right: -100px;
+    right: -130px;
+  }
+
+  .triangle.animate {
     animation-duration: 4s;
     animation-name: slide1;
     animation-iteration-count: infinite;
@@ -33,9 +42,12 @@
 
   .doubleTriangle {
     position: absolute;
-    width: 180px;
+    width: 190px;
     top: 280px;
-    right: -200px;
+    right: -230px;
+  }
+
+  .doubleTriangle.animate {
     animation-duration: 4s;
     animation-delay: 1s;
     animation-name: slide2;
@@ -56,18 +68,30 @@
   }
 }
 
+@media (max-width: 768px) {
+  .hero {
+    .triangle.animate {
+      animation-duration: 2.5s;
+    }
+
+    .doubleTriangle.animate {
+      animation-duration: 2.5s;
+    }
+  }
+}
+
 @keyframes slide1 {
   from {
-    right: -100px;
+    right: -130px;
   }
   to {
-    right: calc(100% + 100px);
+    right: calc(100% + 130px);
   }
 }
 
 @keyframes slide2 {
   from {
-    right: -200px;
+    right: -230px;
   }
   to {
     right: calc(100%);
