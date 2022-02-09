@@ -37,16 +37,6 @@ const Resources = () => {
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="2">
-            <Accordion.Header>
-              Do you connect my E-Mail with Metamask?
-            </Accordion.Header>
-            <Accordion.Body>
-              No, we keep the information separated and don{"'"}t collect any
-              more information than we need to supply you with your NFT. The
-              project is open source, so you can convince yourself of it.
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="3">
             <Accordion.Header>How can I contribute to this?</Accordion.Header>
             <Accordion.Body>
               Anybody can contribute to the project, as long as its open source.
@@ -55,7 +45,7 @@ const Resources = () => {
               You can also reach out to us through info@plotland.one any time.
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="4">
+          <Accordion.Item eventKey="3">
             <Accordion.Header>
               What makes this NFT different from others?
             </Accordion.Header>

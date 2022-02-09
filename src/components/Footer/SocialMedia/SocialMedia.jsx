@@ -29,7 +29,7 @@ const SocialMedia = () => {
         />
       </a>
 
-      <a target="_blank" rel="noreferrer" href="mailto:plotnft@outlook.com">
+      <a target="_blank" rel="noreferrer" href="mailto:info@plotland.one">
         <FaEnvelope className={styles.email} />
       </a>
 

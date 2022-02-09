@@ -21,7 +21,11 @@ const Home = () => {
       <Header />
 
       <Container>
-        <h1 className="fw-bold">Plotland</h1>
+        <div className="d-flex flex-column align-items-center">
+          <h1 className="fw-bold">Plot</h1>
+          <p>A coordinated worldview</p>
+        </div>
+
         <HeroBanner />
 
         <h2 className="fw-bold">About Plotland</h2>
@@ -46,7 +50,7 @@ const Home = () => {
           easily contribute to this new metaverse.
         </p>
 
-        <h2 className="mt-3 fw-bold">Plotland NFT Stats</h2>
+        {/* <h2 className="mt-3 fw-bold">Plotland NFT Stats</h2>
 
         <StatusBox.Main>
           <StatusBox.Item>
@@ -68,7 +72,7 @@ const Home = () => {
             <StatusBox.Header>Total Supply</StatusBox.Header>
             <StatusBox.Text>10000000</StatusBox.Text>
           </StatusBox.Item>
-        </StatusBox.Main>
+        </StatusBox.Main> */}
 
         <h2 className="mt-3 fw-bold">Quadrant Visualization</h2>
 

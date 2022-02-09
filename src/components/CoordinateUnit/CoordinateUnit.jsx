@@ -21,10 +21,22 @@ const CoordinateUnit = ({ children }) => {
             <li>Latitude: -5</li>
             <li>Quadrant: 1</li>
             <li>
-              <a href="https://www.polygonscan.com">Polygonscan</a>
+              <a
+                href="https://www.polygonscan.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Polygonscan
+              </a>
             </li>
             <li>
-              <a href="https://www.opensea.com">Opeansea</a>
+              <a
+                href="https://www.opensea.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Opeansea
+              </a>
             </li>
           </ul>
         </div>
