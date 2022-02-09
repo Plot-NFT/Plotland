@@ -52,11 +52,72 @@
     }
   }
 
+  .navMobile {
+    display: none;
+    position: fixed;
+    width: fit-content;
+    padding: 1.5rem 30% 0 1rem;
+    height: 100%;
+    background-color: #c2e0be;
+    transition: 1s right;
+    top: 0;
+    right: -100%;
+    z-index: 9999;
+
+    ul,
+    li {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+    }
+
+    ul {
+      li {
+        margin-top: 2rem;
+        cursor: pointer;
+      }
+      li.active {
+        box-shadow: -0px 2px 0px 0px variable.$text-primary;
+        -webkit-box-shadow: -0px 2px 0px 0px variable.$text-primary;
+        -moz-box-shadow: -0px 2px 0px 0px variable.$text-primary;
+      }
+
+      li:hover {
+        box-shadow: -0px 2px 0px 0px variable.$text-primary;
+        -webkit-box-shadow: -0px 2px 0px 0px variable.$text-primary;
+        -moz-box-shadow: -0px 2px 0px 0px variable.$text-primary;
+      }
+    }
+  }
+
+  .navMobile.active {
+    right: 0;
+  }
+
+  .mobileMenu {
+    display: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  .mobileMenu:hover svg {
+    fill: variable.$btn-primary-hover;
+  }
+
   .profileButton {
     height: fit-content;
     border-radius: 50%;
     border: none;
     padding: 0.5rem;
+  }
+
+  .profileButtonMobile {
+    display: none;
+    height: fit-content;
+    border-radius: 50%;
+    border: none;
+    margin-top: 2rem;
   }
 }
 
@@ -78,6 +139,30 @@
 .button:hover {
   background: variable.$btn-primary-hover;
   cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .header {
+    .navigation {
+      display: none;
+    }
+
+    .navMobile {
+      display: block;
+    }
+
+    .profileButton {
+      display: none;
+    }
+
+    .mobileMenu {
+      display: block;
+    }
+
+    .profileButtonMobile {
+      display: block;
+    }
+  }
 }
 
 @keyframes pin {

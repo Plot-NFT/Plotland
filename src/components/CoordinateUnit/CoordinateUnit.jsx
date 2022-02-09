@@ -55,11 +55,7 @@ const CoordinateUnit = ({ children }) => {
                 />
               </a>
 
-              <a
-                href="https://www.opensea.com"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href="https://www.opensea.io" target="_blank" rel="noreferrer">
                 <Image
                   src="/assets/opensea.png"
                   alt="logo opensea"

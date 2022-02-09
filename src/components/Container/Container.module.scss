@@ -6,3 +6,9 @@
   margin: 0 auto;
   padding: 2rem 1rem;
 }
+
+@media (max-width: 567px) {
+  .container {
+    width: 100%;
+  }
+}

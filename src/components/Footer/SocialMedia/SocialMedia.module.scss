@@ -3,10 +3,8 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
-
-  img {
-    margin: 0 1rem;
-  }
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
 
   img:hover {
     cursor: pointer;
@@ -31,5 +29,4 @@
 
 .email {
   font-size: 50px;
-  margin: 0 1rem;
 }
