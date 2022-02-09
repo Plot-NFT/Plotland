@@ -7,8 +7,18 @@ import { FaArrowDown } from "react-icons/fa";
 
 import styles from "./Roadmap.module.scss";
 
-const Main = ({ children }) => {
-  return <Row className="text-center">{children}</Row>;
+const Main = ({ children, arrow = null }) => {
+  return (
+    <Row className={`text-center ${styles.main}`}>
+      {children}
+      {!arrow && <div className={styles.mobileLine}></div>}
+      {arrow && (
+        <div className={styles.lineArrow}>
+          <FaArrowDown />
+        </div>
+      )}
+    </Row>
+  );
 };
 
 const Divider = ({ type = "line" }) => {
@@ -30,9 +40,9 @@ const Divider = ({ type = "line" }) => {
   );
 };
 
-const Content = ({ children }) => {
+const Content = ({ children, className = "" }) => {
   return (
-    <Col className={styles.content} md={5} lg={5}>
+    <Col className={`${styles.content} ${className}`} md={5} lg={5}>
       {children}
     </Col>
   );
@@ -51,7 +61,7 @@ const Date = ({ children, position = "right" }) => {
 };
 
 const Placeholder = () => {
-  return <Col md={5} lg={5}></Col>;
+  return <Col className="d-none d-md-block" md={5} lg={5}></Col>;
 };
 
 const Roadmap = { Main, Divider, Content, Date, Placeholder };

@@ -34,7 +34,7 @@ const Roadmap = () => {
 
       <Container>
         <RoadMap.Main>
-          <RoadMap.Content>
+          <RoadMap.Content className="pe-0 pe-md-5">
             <h3>Initiation of the Project</h3>
             <p>
               The Plotland Team comes together and develops the first draft of
@@ -53,7 +53,7 @@ const Roadmap = () => {
 
           <RoadMap.Divider />
 
-          <RoadMap.Content>
+          <RoadMap.Content className="ps-0 ps-md-5">
             <h3>The Whitepaper is released</h3>
             <p>
               The final version of the whitepaper is released for public
@@ -65,7 +65,7 @@ const Roadmap = () => {
         </RoadMap.Main>
 
         <RoadMap.Main>
-          <RoadMap.Content>
+          <RoadMap.Content className="pe-0 pe-md-5">
             <h3>Start of Development</h3>
             <p>The Development of the base smart contract starts.</p>
 
@@ -82,7 +82,7 @@ const Roadmap = () => {
 
           <RoadMap.Divider />
 
-          <RoadMap.Content>
+          <RoadMap.Content className="ps-0 ps-md-5">
             <h3>Brand Identity</h3>
             <p>
               The brand identity of Plot is finalised and integrated into the
@@ -94,7 +94,7 @@ const Roadmap = () => {
         </RoadMap.Main>
 
         <RoadMap.Main>
-          <RoadMap.Content>
+          <RoadMap.Content className="pe-0 pe-md-5">
             <h3>Pre-Release Website</h3>
             <p>
               The Pre-Release Website is Deployed under the domain plotland.one.
@@ -113,7 +113,7 @@ const Roadmap = () => {
 
           <RoadMap.Divider />
 
-          <RoadMap.Content>
+          <RoadMap.Content className="ps-0 ps-md-5">
             <h3>Smart Contract finished</h3>
             <p>
               After extensive testing on the test chain, the smart contract is
@@ -125,7 +125,7 @@ const Roadmap = () => {
         </RoadMap.Main>
 
         <RoadMap.Main>
-          <RoadMap.Content>
+          <RoadMap.Content className="pe-0 pe-md-5">
             <h3>Completed Post-Release Platform</h3>
             <p>
               The development of the post release platform is complete and ready
@@ -145,7 +145,7 @@ const Roadmap = () => {
 
           <RoadMap.Divider />
 
-          <RoadMap.Content>
+          <RoadMap.Content className="ps-0 ps-md-5">
             <h3>Release Day</h3>
             <p>
               Today the smart contract gets deployed on the polygon chain and
@@ -158,7 +158,7 @@ const Roadmap = () => {
         </RoadMap.Main>
 
         <RoadMap.Main>
-          <RoadMap.Content>
+          <RoadMap.Content className="pe-0 pe-md-5">
             <h3>Update for Platform</h3>
             <p>
               An updated version of the Platform with new features is deployed.
@@ -177,7 +177,7 @@ const Roadmap = () => {
 
           <RoadMap.Divider />
 
-          <RoadMap.Content>
+          <RoadMap.Content className="ps-0 ps-md-5">
             <h3>Second Quadrant Release Day</h3>
             <p>
               The NFT’s of the second quadrant are available for minting
@@ -188,7 +188,7 @@ const Roadmap = () => {
           </RoadMap.Content>
         </RoadMap.Main>
 
-        <RoadMap.Main>
+        <RoadMap.Main arrow>
           <RoadMap.Content></RoadMap.Content>
           <RoadMap.Divider type="arrow" />
           <RoadMap.Placeholder />
