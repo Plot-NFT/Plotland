@@ -1,26 +1,27 @@
 import MongoDB from "../../config/db.js";
-import Whitelist from "../../models/WhitelistSchema.js";
+import Metadata from "../../models/MetadataSchema.js";
 
 async function handler(req, res) {
   await MongoDB.getInstance();
 
   const { method } = req;
-  const { wallet: userWallet } = req.query;
+  const { tokenIds } = req.query;
 
   switch (method) {
     case "GET":
-      const query = userWallet ? { wallet: userWallet } : {};
+      const query = { tokenId: { $in: tokenIds } };
 
       try {
-        const whitelists = await Whitelist.find(query);
+        const Metadatas = await Metadata.find(query);
 
         res.json({
           status: 200,
-          message: "Success getting whitelist data",
-          data: whitelists,
+          message: "Success getting metadata data",
+          data: Metadatas,
         });
       } catch (error) {
         console.error(error);
+
         res.json({
           status: 500,
           error: "Server error",

@@ -20,7 +20,6 @@ function UserProvider({ children }) {
       case "success":
         return {
           wallet: action.payload.wallet,
-          mailingStatus: action.payload.mailingStatus,
           status: "success",
         };
       case "failed":
@@ -31,7 +30,6 @@ function UserProvider({ children }) {
       case "logout":
         return {
           wallet: null,
-          mailingStatus: "unknown",
           status: "logout",
         };
       default:
@@ -41,7 +39,6 @@ function UserProvider({ children }) {
 
   const [user, dispatch] = React.useReducer(userReducer, {
     wallet: null,
-    mailingStatus: "unknown",
     status: "idle",
   });
 

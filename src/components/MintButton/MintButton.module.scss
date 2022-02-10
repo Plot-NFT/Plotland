@@ -3,7 +3,8 @@
 .button,
 .button:hover,
 .button:active,
-.button:focus {
+.button:focus,
+.button:disabled {
   background-color: variable.$bg-secondary;
   border: none;
   width: 10rem;

@@ -76,7 +76,17 @@ const Resources = () => {
 
         <h2 className="my-3 fw-bold">Contract Address</h2>
 
-        <p>Plotland contract address: 0xjkj129d781eee38eu38eu</p>
+        <p>
+          Plotland contract address:{" "}
+          <a
+            href="https://mumbai.polygonscan.com/address/0x41c1a62497274B56e1D2925D4E7980e9a49A88C0"
+            target="_blank"
+            rel="noreferrer"
+            className="fw-bold"
+          >
+            0x41c1a62497274B56e1D2925D4E7980e9a49A88C0
+          </a>
+        </p>
 
         <h2 className="my-3 fw-bold">Github Repository</h2>
 

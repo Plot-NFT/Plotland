@@ -1,12 +1,11 @@
 import * as React from "react";
 import Head from "next/head";
 import axios from "axios";
+import { createAlchemyWeb3 } from "@alch/alchemy-web3";
+
 import { useUser } from "context/userContext";
 
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { FaUserSecret } from "react-icons/fa";
-
 import Header from "components/Header/Header";
 import Alert from "components/Alert/Alert";
 import Footer from "components/Footer/Footer";
@@ -15,11 +14,21 @@ import Container from "components/Container/Container";
 import Loading from "components/Loading/Loading";
 import CoordinateUnit from "components/CoordinateUnit/CoordinateUnit";
 import MintButton from "components/MintButton/MintButton";
+import Form from "react-bootstrap/Form";
 
 const Profile = () => {
   const [chainId, setChainId] = React.useState(null);
   const [walletError, setWalletError] = React.useState(false);
+  const [quadrant, setQuadrant] = React.useState(null);
+  const [mint, setMint] = React.useState({
+    status: "idle",
+    error: "",
+    message: "",
+    data: null,
+  });
   const [user, dispatch] = useUser();
+
+  const web3 = createAlchemyWeb3(process.env.NEXT_PUBLIC_ALCHEMY_KEY);
 
   const detectProvider = () => {
     if (!window.ethereum) {
@@ -29,60 +38,111 @@ const Profile = () => {
     }
   };
 
-  const getChainName = async (chainId) => {
+  const getTokenIdsByOwner = async () => {
     try {
-      const { data } = await axios.get(
-        "https://chainid.network/chains_mini.json"
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const contract = new ethers.Contract(
+        plotContractAddress,
+        Plot.abi,
+        provider
       );
+      const tokenIds = await contract.getLandsByOwner();
 
-      const network = data.find((val) => val.chainId === chainId);
-
-      return network.name;
+      return { contract, tokenIds };
     } catch (error) {
-      console.error(error);
-      return null;
+      console.log(error);
     }
   };
 
-  const registerWallet = React.useCallback(
-    async (wallet) => {
+  const getTokenURIs = async () => {
+    try {
+      let tokenURIs = [];
+      const { contract, tokenIds } = await getTokenIdsByOwner();
+
+      for (let i = 0; i < tokenIds.length; i++) {
+        const tokenId = Number(tokenArray[i]) + 1;
+        const tokenURI = await contract.tokenURI(tokenId);
+
+        tokenURIs.push(tokenURI);
+      }
+
+      return tokenURIs;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const displayUserNFTs = async () => {
+    try {
+      let nftMetadata = [];
+      const tokenURIs = await getTokenURIs();
+
+      for (let i = 0; i < tokenURIs.length; i++) {
+        const resp = await fetch(tokenURIs[i]);
+        const metadata = await resp.json();
+
+        nftMetadata.push(metadata);
+      }
+    } catch (error) {
+      console.log(error);
+      setNftStatus("failed");
+    }
+  };
+
+  const mintNFT = async (quadrant) => {
+    setMint({
+      ...mint,
+      status: "loading",
+    });
+
+    if (quadrant) {
+      setMint({
+        ...mint,
+        status: "failed",
+        error: "Please select a quadrant before minting!",
+      });
+    } else {
+      const contract = await new web3.eth.Contract(
+        Plot.abi,
+        process.env.NEXT_PUBLIC_CONTRACT
+      );
+
+      //set up your Ethereum transaction
+      const transactionParameters = {
+        to: process.env.NEXT_PUBLIC_CONTRACT, // Required except during contract publications.
+        value: "0",
+        from: window.ethereum.selectedAddress, // must match user's active address.
+        data: contract.methods.buyLand(quadrant).encodeABI(), //make call to NFT smart contract
+      };
+
+      //sign the transaction via Metamask
       try {
-        const chainId = Number(ethereum.networkVersion);
-        const chainName = await getChainName(chainId);
+        const txHash = await window.ethereum.request({
+          method: "eth_sendTransaction",
+          params: [transactionParameters],
+        });
 
-        const whitelistPayload = {
-          wallet,
-          network: {
-            chainId,
-            chainName: chainName || "",
-          },
-        };
+        console.log(txHash);
 
-        const { data } = await axios.post("/api/whitelist", whitelistPayload);
-
-        console.log("success adding wallet address to whitelist");
-
-        dispatch({
-          type: "success",
-          payload: {
-            wallet: data.data.wallet,
-            mailingStatus: data.data.mailingStatus,
-          },
+        setMint({
+          ...mint,
+          status: "success",
+          message: "Success minting NFT!",
         });
       } catch (error) {
+        const err =
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+
         console.error(error);
+
+        setMint({
+          ...mint,
+          status: "failed",
+          error: err,
+        });
       }
-    },
-    [dispatch]
-  );
-
-  const checkUser = async (account) => {
-    try {
-      const { data } = await axios.get(`/api/whitelist?wallet=${account}`);
-
-      return data.data[0];
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -97,19 +157,12 @@ const Profile = () => {
               dispatch({ type: "loading" });
 
               if (accounts.length) {
-                const isRegistered = await checkUser(accounts[0]);
-
-                if (!isRegistered) {
-                  await registerWallet(accounts[0]);
-                } else {
-                  dispatch({
-                    type: "success",
-                    payload: {
-                      wallet: isRegistered.wallet,
-                      mailingStatus: isRegistered.mailingStatus,
-                    },
-                  });
-                }
+                dispatch({
+                  type: "success",
+                  payload: {
+                    wallet: accounts[0],
+                  },
+                });
               } else {
                 dispatch({
                   type: "logout",
@@ -120,21 +173,12 @@ const Profile = () => {
 
           const updateUserState = async () => {
             if (ethereum.selectedAddress && user.status === "idle") {
-              dispatch({ type: "loading" });
-
-              const isRegistered = await checkUser(ethereum.selectedAddress);
-
-              if (isRegistered) {
-                dispatch({
-                  type: "success",
-                  payload: {
-                    wallet: isRegistered.wallet,
-                    mailingStatus: isRegistered.mailingStatus,
-                  },
-                });
-              } else {
-                await registerWallet(ethereum.selectedAddress);
-              }
+              dispatch({
+                type: "success",
+                payload: {
+                  wallet: ethereum.selectedAddress,
+                },
+              });
             } else if (user.status === "idle") {
               dispatch({
                 type: "ready",
@@ -161,19 +205,12 @@ const Profile = () => {
             dispatch({ type: "loading" });
 
             if (accounts.length) {
-              const isRegistered = await checkUser(accounts[0]);
-
-              if (!isRegistered) {
-                await registerWallet(accounts[0]);
-              } else {
-                dispatch({
-                  type: "success",
-                  payload: {
-                    wallet: isRegistered.wallet,
-                    mailingStatus: isRegistered.mailingStatus,
-                  },
-                });
-              }
+              dispatch({
+                type: "success",
+                payload: {
+                  wallet: accounts[0],
+                },
+              });
             } else {
               dispatch({
                 type: "logout",
@@ -184,21 +221,12 @@ const Profile = () => {
 
         const updateUserState = async () => {
           if (ethereum.selectedAddress && user.status === "idle") {
-            dispatch({ type: "loading" });
-
-            const isRegistered = await checkUser(ethereum.selectedAddress);
-
-            if (isRegistered) {
-              dispatch({
-                type: "success",
-                payload: {
-                  wallet: isRegistered.wallet,
-                  mailingStatus: isRegistered.mailingStatus,
-                },
-              });
-            } else {
-              await registerWallet(ethereum.selectedAddress);
-            }
+            dispatch({
+              type: "success",
+              payload: {
+                wallet: ethereum.selectedAddress,
+              },
+            });
           } else if (user.status === "idle") {
             dispatch({
               type: "ready",
@@ -216,7 +244,18 @@ const Profile = () => {
         }, 2000);
       }
     }
-  }, [chainId, dispatch, registerWallet, user]);
+
+    if (mint.status === "success" || mint.status === "failed") {
+      setTimeout(() => {
+        setMint({
+          status: "idle",
+          error: "",
+          message: "",
+          data: null,
+        });
+      }, 2500);
+    }
+  }, [dispatch, mint.status, user.status]);
 
   return (
     <>
@@ -244,7 +283,46 @@ const Profile = () => {
 
                 {user.wallet && (
                   <>
-                    <MintButton className="mt-3" />
+                    <div className="mt-3">
+                      <Form.Group>
+                        <Form.Label>Quadrant</Form.Label>
+
+                        <Form.Select
+                          value={quadrant}
+                          onChange={(e) => setQuadrant(e.target.value)}
+                        >
+                          <option value="">Select</option>
+                          <option value="1">1</option>
+                          <option value="2" className="text-muted" disabled>
+                            2
+                          </option>
+                          <option value="3" className="text-muted" disabled>
+                            3
+                          </option>
+                          <option value="4" className="text-muted" disabled>
+                            4
+                          </option>
+                        </Form.Select>
+                      </Form.Group>
+
+                      <MintButton
+                        className="mt-3"
+                        onClick={() => mintNFT(quadrant)}
+                        disabled={mint.status === "loading" || !quadrant}
+                      >
+                        {mint.status === "loading" ? "Minting..." : "Mint"}
+                      </MintButton>
+                    </div>
+
+                    {mint.status === "success" && (
+                      <Alert className="mt-3" variant="success">
+                        {mint.message}
+                      </Alert>
+                    )}
+
+                    {mint.status === "failed" && (
+                      <Alert className="mt-3">{mint.error}</Alert>
+                    )}
 
                     <h2 className="fw-bold my-3">Collection</h2>
 
