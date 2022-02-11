@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import styles from "./CoordinateUnit.module.scss";
 
-const CoordinateUnit = ({ children }) => {
+const CoordinateUnit = ({ metadata }) => {
   return (
     <div className={styles.flipCard}>
       <div className={styles.innerCard}>
@@ -17,7 +17,7 @@ const CoordinateUnit = ({ children }) => {
               width={80}
             />
 
-            <p>{children}</p>
+            <p>{`${metadata.longitude}, ${metadata.latitude}`}</p>
           </div>
         </div>
         <div className={styles.backCard}>
@@ -31,22 +31,18 @@ const CoordinateUnit = ({ children }) => {
 
             <ul className="mt-3">
               <li>
-                Longitude: <strong>25</strong>
+                Longitude: <strong>{metadata.longitude}</strong>
               </li>
               <li>
-                Latitude: <strong>-5</strong>
+                Latitude: <strong>{metadata.latitude}</strong>
               </li>
               <li>
-                Quadrant: <strong>1</strong>
+                Quadrant: <strong>{metadata.quadrant}</strong>
               </li>
             </ul>
 
             <div className={styles.externalLink}>
-              <a
-                href="https://www.polygonscan.com"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={metadata.maticUrl} target="_blank" rel="noreferrer">
                 <Image
                   src="/assets/matic.png"
                   alt="logo matic"
@@ -55,7 +51,7 @@ const CoordinateUnit = ({ children }) => {
                 />
               </a>
 
-              <a href="https://www.opensea.io" target="_blank" rel="noreferrer">
+              <a href={metadata.openseaUrl} target="_blank" rel="noreferrer">
                 <Image
                   src="/assets/opensea.png"
                   alt="logo opensea"

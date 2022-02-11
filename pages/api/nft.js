@@ -9,7 +9,7 @@ async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const query = { tokenId: { $in: tokenIds } };
+      const query = { tokenId: { $in: JSON.parse(tokenIds) } };
 
       try {
         const Metadatas = await Metadata.find(query);
@@ -24,7 +24,7 @@ async function handler(req, res) {
 
         res.json({
           status: 500,
-          error: "Server error",
+          error: error.message,
         });
       }
       break;

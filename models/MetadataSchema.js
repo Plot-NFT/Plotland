@@ -5,6 +5,10 @@ const MetadataSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+  },
   tokenURI: {
     type: String,
     required: true,

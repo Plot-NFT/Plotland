@@ -10,13 +10,8 @@ function UserProvider({ children }) {
       case "ready": {
         return { ...state, status: "ready" };
       }
-      case "connect": {
-        return { ...state, wallet: action.payload.wallet };
-      }
       case "loading":
         return { ...state, status: "loading" };
-      case "submitting":
-        return { ...state, status: "submitting" };
       case "success":
         return {
           wallet: action.payload.wallet,

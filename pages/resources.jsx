@@ -79,12 +79,12 @@ const Resources = () => {
         <p>
           Plotland contract address:{" "}
           <a
-            href="https://mumbai.polygonscan.com/address/0x41c1a62497274B56e1D2925D4E7980e9a49A88C0"
+            href={`https://mumbai.polygonscan.com/address/${process.env.NEXT_PUBLIC_CONTRACT}`}
             target="_blank"
             rel="noreferrer"
             className="fw-bold"
           >
-            0x41c1a62497274B56e1D2925D4E7980e9a49A88C0
+            {process.env.NEXT_PUBLIC_CONTRACT}
           </a>
         </p>
 

@@ -1,9 +1,11 @@
 import * as React from "react";
 import Head from "next/head";
 import axios from "axios";
-import { createAlchemyWeb3 } from "@alch/alchemy-web3";
+import { ethers } from "ethers";
 
 import { useUser } from "context/userContext";
+import { mintNFT } from "utils/interact.js";
+import Plot from "contracts/Plot.json";
 
 import { FaUserSecret } from "react-icons/fa";
 import Header from "components/Header/Header";
@@ -19,16 +21,20 @@ import Form from "react-bootstrap/Form";
 const Profile = () => {
   const [chainId, setChainId] = React.useState(null);
   const [walletError, setWalletError] = React.useState(false);
-  const [quadrant, setQuadrant] = React.useState(null);
+  const [quadrant, setQuadrant] = React.useState("");
   const [mint, setMint] = React.useState({
     status: "idle",
     error: "",
     message: "",
     data: null,
   });
+  const [collection, setCollection] = React.useState({
+    status: "idle",
+    error: "",
+    message: "",
+    data: [],
+  });
   const [user, dispatch] = useUser();
-
-  const web3 = createAlchemyWeb3(process.env.NEXT_PUBLIC_ALCHEMY_KEY);
 
   const detectProvider = () => {
     if (!window.ethereum) {
@@ -38,165 +44,26 @@ const Profile = () => {
     }
   };
 
-  const getTokenIdsByOwner = async () => {
+  const getTokenIdsByOwner = async (wallet) => {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
+
       const contract = new ethers.Contract(
-        plotContractAddress,
+        process.env.NEXT_PUBLIC_CONTRACT,
         Plot.abi,
         provider
       );
-      const tokenIds = await contract.getLandsByOwner();
 
-      return { contract, tokenIds };
+      const tokenIds = await contract.getLandsByOwner(wallet);
+
+      return tokenIds;
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const getTokenURIs = async () => {
-    try {
-      let tokenURIs = [];
-      const { contract, tokenIds } = await getTokenIdsByOwner();
-
-      for (let i = 0; i < tokenIds.length; i++) {
-        const tokenId = Number(tokenArray[i]) + 1;
-        const tokenURI = await contract.tokenURI(tokenId);
-
-        tokenURIs.push(tokenURI);
-      }
-
-      return tokenURIs;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const displayUserNFTs = async () => {
-    try {
-      let nftMetadata = [];
-      const tokenURIs = await getTokenURIs();
-
-      for (let i = 0; i < tokenURIs.length; i++) {
-        const resp = await fetch(tokenURIs[i]);
-        const metadata = await resp.json();
-
-        nftMetadata.push(metadata);
-      }
-    } catch (error) {
-      console.log(error);
-      setNftStatus("failed");
-    }
-  };
-
-  const mintNFT = async (quadrant) => {
-    setMint({
-      ...mint,
-      status: "loading",
-    });
-
-    if (quadrant) {
-      setMint({
-        ...mint,
-        status: "failed",
-        error: "Please select a quadrant before minting!",
-      });
-    } else {
-      const contract = await new web3.eth.Contract(
-        Plot.abi,
-        process.env.NEXT_PUBLIC_CONTRACT
-      );
-
-      //set up your Ethereum transaction
-      const transactionParameters = {
-        to: process.env.NEXT_PUBLIC_CONTRACT, // Required except during contract publications.
-        value: "0",
-        from: window.ethereum.selectedAddress, // must match user's active address.
-        data: contract.methods.buyLand(quadrant).encodeABI(), //make call to NFT smart contract
-      };
-
-      //sign the transaction via Metamask
-      try {
-        const txHash = await window.ethereum.request({
-          method: "eth_sendTransaction",
-          params: [transactionParameters],
-        });
-
-        console.log(txHash);
-
-        setMint({
-          ...mint,
-          status: "success",
-          message: "Success minting NFT!",
-        });
-      } catch (error) {
-        const err =
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message;
-
-        console.error(error);
-
-        setMint({
-          ...mint,
-          status: "failed",
-          error: err,
-        });
-      }
     }
   };
 
   React.useEffect(() => {
-    if (user.status === "idle") {
-      setTimeout(() => {
-        const ethereum = detectProvider();
-
-        if (ethereum) {
-          if (user.status === "idle") {
-            ethereum.on("accountsChanged", async (accounts) => {
-              dispatch({ type: "loading" });
-
-              if (accounts.length) {
-                dispatch({
-                  type: "success",
-                  payload: {
-                    wallet: accounts[0],
-                  },
-                });
-              } else {
-                dispatch({
-                  type: "logout",
-                });
-              }
-            });
-          }
-
-          const updateUserState = async () => {
-            if (ethereum.selectedAddress && user.status === "idle") {
-              dispatch({
-                type: "success",
-                payload: {
-                  wallet: ethereum.selectedAddress,
-                },
-              });
-            } else if (user.status === "idle") {
-              dispatch({
-                type: "ready",
-              });
-            }
-          };
-
-          updateUserState();
-        } else {
-          setTimeout(() => {
-            setWalletError(true);
-            dispatch({
-              type: "ready",
-            });
-          }, 2000);
-        }
-      }, 200);
-    } else {
+    setTimeout(() => {
       const ethereum = detectProvider();
 
       if (ethereum) {
@@ -243,19 +110,63 @@ const Profile = () => {
           });
         }, 2000);
       }
+    }, 200);
+
+    async function checkUserCollection(wallet) {
+      setCollection({ ...collection, status: "loading" });
+
+      const tokenIdsInHex = await getTokenIdsByOwner(wallet);
+
+      const tokenIds = tokenIdsInHex.map((bigNum) => Number(bigNum) + 1);
+
+      console.log(tokenIds, "token ids");
+
+      if (tokenIds.length) {
+        try {
+          const { data } = await axios.get(
+            `/api/nft?tokenIds=${JSON.stringify(tokenIds)}`
+          );
+
+          console.log(data, "fetch response nft");
+
+          setCollection({
+            ...collection,
+            data: data.data,
+            status: "success",
+            message: data.message,
+          });
+        } catch (error) {
+          const err =
+            error.response && error.response.data.error
+              ? error.response.data.error
+              : error.message;
+
+          setCollection({
+            ...collection,
+            status: "failed",
+            error: err,
+          });
+        }
+      } else {
+        setCollection({
+          ...collection,
+          status: "success",
+          message: "User does not have any Plot NFT",
+        });
+      }
+    }
+
+    if (user.wallet && collection.status === "idle") {
+      checkUserCollection(user.wallet);
     }
 
     if (mint.status === "success" || mint.status === "failed") {
       setTimeout(() => {
-        setMint({
-          status: "idle",
-          error: "",
-          message: "",
-          data: null,
-        });
-      }, 2500);
+        setMint({ status: "idle", error: "", message: "", data: null });
+        setQuadrant("");
+      }, 5000);
     }
-  }, [dispatch, mint.status, user.status]);
+  }, [collection, dispatch, mint, user]);
 
   return (
     <>
@@ -307,7 +218,9 @@ const Profile = () => {
 
                       <MintButton
                         className="mt-3"
-                        onClick={() => mintNFT(quadrant)}
+                        onClick={async () =>
+                          await mintNFT([mint, setMint], quadrant)
+                        }
                         disabled={mint.status === "loading" || !quadrant}
                       >
                         {mint.status === "loading" ? "Minting..." : "Mint"}
@@ -326,16 +239,23 @@ const Profile = () => {
 
                     <h2 className="fw-bold my-3">Collection</h2>
 
-                    <div className="d-flex gap-2 flex-wrap justify-content-around">
-                      <CoordinateUnit>25, -5</CoordinateUnit>
-                      <CoordinateUnit>25, -5</CoordinateUnit>
-                      <CoordinateUnit>25, -5</CoordinateUnit>
-                      <CoordinateUnit>25, -5</CoordinateUnit>
-                      <CoordinateUnit>25, -5</CoordinateUnit>
-                      <CoordinateUnit>25, -5</CoordinateUnit>
-                      <CoordinateUnit>25, -5</CoordinateUnit>
-                      <CoordinateUnit>25, -5</CoordinateUnit>
-                    </div>
+                    {collection.data.length > 0 && (
+                      <div className="d-flex gap-2 flex-wrap justify-content-around">
+                        {collection.data.map((metadata) => (
+                          <CoordinateUnit
+                            key={metadata.tokenId}
+                            metadata={metadata}
+                          />
+                        ))}
+                      </div>
+                    )}
+
+                    {collection.data.length === 0 &&
+                      collection.status === "success" && (
+                        <div>You do not have any NFT</div>
+                      )}
+
+                    {collection.status === "loading" && <div>Loading...</div>}
                   </>
                 )}
               </main>
