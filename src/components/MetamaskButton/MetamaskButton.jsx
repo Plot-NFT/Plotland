@@ -49,7 +49,7 @@ const MetamaskButton = ({ chainState }) => {
         });
 
         dispatch({
-          type: "connect",
+          type: "success",
           payload: {
             wallet: accounts[0],
           },

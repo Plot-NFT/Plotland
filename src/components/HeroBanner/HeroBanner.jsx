@@ -10,6 +10,14 @@ const HeroBanner = () => {
     let isAnimating = false;
     const logo = document.querySelector("img#logo");
 
+    logo.addEventListener("click", () => {
+      if (!animate) {
+        setAnimate(true);
+      }
+
+      animateLogo();
+    });
+
     const animateLogo = () => {
       if (!isAnimating) {
         logo.classList.add("pin");
@@ -40,6 +48,7 @@ const HeroBanner = () => {
   return (
     <div className={styles.hero}>
       {!animate && <p className={styles.info}>Press space to start!</p>}
+      {!animate && <p className={styles.infoMobile}>Tap icon to start!</p>}
 
       <div className={styles.logo}>
         <Image id="logo" src="/assets/Plot_Logo_Black.svg" alt="plot logo" />
