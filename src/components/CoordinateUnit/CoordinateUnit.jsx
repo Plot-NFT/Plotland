@@ -42,7 +42,11 @@ const CoordinateUnit = ({ metadata }) => {
             </ul>
 
             <div className={styles.externalLink}>
-              <a href={metadata.maticUrl} target="_blank" rel="noreferrer">
+              <a
+                href={`https://mumbai.polygonscan.com/token/${process.env.NEXT_PUBLIC_CONTRACT}?a=${metadata.tokenId}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Image
                   src="/assets/matic.png"
                   alt="logo matic"
@@ -51,7 +55,11 @@ const CoordinateUnit = ({ metadata }) => {
                 />
               </a>
 
-              <a href={metadata.openseaUrl} target="_blank" rel="noreferrer">
+              <a
+                href={`https://testnets.opensea.io/assets/mumbai/${process.env.NEXT_PUBLIC_CONTRACT}/${metadata.tokenId}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Image
                   src="/assets/opensea.png"
                   alt="logo opensea"

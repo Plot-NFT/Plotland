@@ -17,6 +17,7 @@ import Loading from "components/Loading/Loading";
 import CoordinateUnit from "components/CoordinateUnit/CoordinateUnit";
 import MintButton from "components/MintButton/MintButton";
 import Form from "react-bootstrap/Form";
+import Carousel from "react-bootstrap/Carousel";
 
 const Profile = () => {
   const [chainId, setChainId] = React.useState(null);
@@ -33,6 +34,7 @@ const Profile = () => {
     error: "",
     message: "",
     data: [],
+    sorted: [],
   });
   const [user, dispatch] = useUser();
 
@@ -129,11 +131,24 @@ const Profile = () => {
 
           console.log(data, "fetch response nft");
 
+          let sorted = [];
+
+          data.data.forEach((item, index) => {
+            const count = Math.ceil((index + 1) / 3) - 1;
+
+            if (sorted[count]) {
+              sorted[count].push(item);
+            } else {
+              sorted[count] = [item];
+            }
+          });
+
           setCollection({
             ...collection,
             data: data.data,
             status: "success",
             message: data.message,
+            sorted,
           });
         } catch (error) {
           const err =
@@ -240,14 +255,42 @@ const Profile = () => {
                     <h2 className="fw-bold my-3">Collection</h2>
 
                     {collection.data.length > 0 && (
-                      <div className="d-flex gap-2 flex-wrap justify-content-around">
-                        {collection.data.map((metadata) => (
-                          <CoordinateUnit
-                            key={metadata.tokenId}
-                            metadata={metadata}
-                          />
-                        ))}
-                      </div>
+                      <>
+                        <Carousel
+                          className="d-none d-md-block"
+                          fade={true}
+                          slide={false}
+                        >
+                          {collection.sorted.map((metadatas, idx) => (
+                            <Carousel.Item
+                              key={idx}
+                              className="d-flex flex-wrap justify-content-center"
+                            >
+                              {metadatas.map((metadata) => (
+                                <CoordinateUnit
+                                  key={metadata.tokenId}
+                                  metadata={metadata}
+                                />
+                              ))}
+                            </Carousel.Item>
+                          ))}
+                        </Carousel>
+
+                        <Carousel
+                          className="d-block d-md-none"
+                          fade={true}
+                          slide={false}
+                        >
+                          {collection.data.map((metadata) => (
+                            <Carousel.Item
+                              key={metadata.tokenId}
+                              className="d-flex flex-wrap justify-content-center"
+                            >
+                              <CoordinateUnit metadata={metadata} />
+                            </Carousel.Item>
+                          ))}
+                        </Carousel>
+                      </>
                     )}
 
                     {collection.data.length === 0 &&
