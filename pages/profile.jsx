@@ -129,7 +129,7 @@ const Profile = () => {
             `/api/nft?tokenIds=${JSON.stringify(tokenIds)}`
           );
 
-          console.log(data, "fetch response nft");
+          console.log(data, "fetch response NFT");
 
           let sorted = [];
 
