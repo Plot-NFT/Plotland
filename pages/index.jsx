@@ -28,27 +28,29 @@ const Home = () => {
 
         <HeroBanner />
 
-        <h2 className="fw-bold">About Plotland</h2>
+        <div className="py-5">
+          <h2 className="fw-bold">About Plotland</h2>
 
-        <p className="text-center w-75 mx-auto">
-          Plot is the new coordinate-based NFT platform for developers and users
-          alike. Land is limited and so is Plot. Based on our worlds
-          coordinates, Plot is the foundation for a blockchain-based future of
-          sustainable, collaborative growth.
-        </p>
+          <p className="text-justify text-width mx-auto">
+            Plot is the new coordinate-based NFT platform for developers and
+            users alike. Land is limited and so is Plot. Based on our worlds
+            coordinates, Plot is the foundation for a blockchain-based future of
+            sustainable, collaborative growth.
+          </p>
 
-        <p className="text-center w-75 mx-auto">
-          We believe in transparency, thats why everything is open source and
-          about as simple and clear as it gets. Our goal is to deliver a great
-          foundation to build on and make it accessible to everybody who wants
-          to collaborate.
-        </p>
+          <p className="text-justify text-width mx-auto">
+            We believe in transparency, thats why everything is open source and
+            about as simple and clear as it gets. Our goal is to deliver a great
+            foundation to build on and make it accessible to everybody who wants
+            to collaborate.
+          </p>
 
-        <p className="mb-3 text-center w-75 mx-auto">
-          Plot is based on Polygon and ERC-721 Standards. The purist approach
-          and community focus of the Plot team enables other teams and
-          developers to easily contribute to this new metaverse.
-        </p>
+          <p className="text-justify text-width mx-auto">
+            Plot is based on Polygon and ERC-721 Standards. The purist approach
+            and community focus of the Plot team enables other teams and
+            developers to easily contribute to this new metaverse.
+          </p>
+        </div>
 
         {/* <h2 className="mt-3 fw-bold">Plotland NFT Stats</h2>
 
@@ -74,25 +76,27 @@ const Home = () => {
           </StatusBox.Item>
         </StatusBox.Main> */}
 
-        <h2 className="mt-5 fw-bold ">Quadrant Visualization</h2>
+        <div className="py-5">
+          <h2 className="mt-5 fw-bold ">Quadrant Visualization</h2>
 
-        <p className="mb-2 text-center w-75 mx-auto">
-          Plot is released in four stages over four quadrants, with each having
-          its own release date. Originating at the zero coordinate in the guinea
-          gulf, the first quadrant includes major landmass in central and east
-          Europe, Asia and north-west Africa. The second quadrant includes
-          landmass in western Europe, North America and northern parts of South
-          America. The third quadrant includes landmass in south-east Asia,
-          Australia and Southern Africa. The fourth quadrant includes landmass
-          in South America.
-        </p>
+          <p className="mb-2 text-justify text-width mx-auto">
+            Plot is released in four stages over four quadrants, with each
+            having its own release date. Originating at the zero coordinate in
+            the guinea gulf, the first quadrant includes major landmass in
+            central and east Europe, Asia and north-west Africa. The second
+            quadrant includes landmass in western Europe, North America and
+            northern parts of South America. The third quadrant includes
+            landmass in south-east Asia, Australia and Southern Africa. The
+            fourth quadrant includes landmass in South America.
+          </p>
 
-        <Image
-          width={2777}
-          height={1074}
-          src="/assets/visualization.png"
-          alt="quadrant visualization"
-        />
+          <Image
+            width={2777}
+            height={1074}
+            src="/assets/visualization.png"
+            alt="quadrant visualization"
+          />
+        </div>
       </Container>
 
       <Footer />

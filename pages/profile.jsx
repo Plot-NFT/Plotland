@@ -257,7 +257,11 @@ const Profile = () => {
                       <Alert className="mt-3">{mint.error}</Alert>
                     )}
 
-                    <h2 className="fw-bold my-3">Collection</h2>
+                    <h2 className="fw-bold mb-3 mt-5">
+                      {collection.data.length > 0
+                        ? `Collection (${collection.data.length})`
+                        : "Collection"}
+                    </h2>
 
                     {collection.data.length > 0 && (
                       <>

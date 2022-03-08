@@ -60,6 +60,18 @@ input {
   background-color: transparent;
 }
 
+a.carousel-control-next {
+  right: -40px !important;
+}
+
+a.carousel-control-prev {
+  left: -40px !important;
+}
+
+div.carousel-indicators {
+  bottom: -45px !important;
+}
+
 .main-title {
   font-size: 3.5rem;
 }
@@ -73,6 +85,20 @@ input {
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-width {
+  width: 50%;
+}
+
+@media (max-width: 576px) {
+  .text-width {
+    width: 100%;
+  }
 }
 
 @keyframes pin {
