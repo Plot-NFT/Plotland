@@ -86,6 +86,10 @@ const Profile = () => {
               });
             }
           });
+
+          ethereum.on("message", async (message) => {
+            console.log(message);
+          });
         }
 
         const updateUserState = async () => {
