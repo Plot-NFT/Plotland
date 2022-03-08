@@ -22,7 +22,7 @@ import Carousel from "react-bootstrap/Carousel";
 const Profile = () => {
   const [chainId, setChainId] = React.useState(null);
   const [walletError, setWalletError] = React.useState(false);
-  const [quadrant, setQuadrant] = React.useState("");
+  const [quadrant, setQuadrant] = React.useState("1");
   const [mint, setMint] = React.useState({
     status: "idle",
     error: "",
@@ -112,14 +112,14 @@ const Profile = () => {
           });
         }, 2000);
       }
-    }, 200);
+    }, 400);
 
     async function checkUserCollection(wallet) {
       setCollection({ ...collection, status: "loading" });
 
       const tokenIdsInHex = await getTokenIdsByOwner(wallet);
 
-      const tokenIds = tokenIdsInHex.map((bigNum) => Number(bigNum) + 1);
+      const tokenIds = tokenIdsInHex.map((bigNum) => Number(bigNum));
 
       console.log(tokenIds, "token ids");
 
@@ -178,7 +178,7 @@ const Profile = () => {
     if (mint.status === "success" || mint.status === "failed") {
       setTimeout(() => {
         setMint({ status: "idle", error: "", message: "", data: null });
-        setQuadrant("");
+        setQuadrant("1");
       }, 5000);
     }
   }, [collection, dispatch, mint, user]);
@@ -215,6 +215,7 @@ const Profile = () => {
 
                         <Form.Select
                           value={quadrant}
+                          className="bg-transparent border-black"
                           onChange={(e) => setQuadrant(e.target.value)}
                         >
                           <option value="">Select</option>

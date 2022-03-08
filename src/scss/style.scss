@@ -60,6 +60,14 @@ input {
   background-color: transparent;
 }
 
+.main-title {
+  font-size: 3.5rem;
+}
+
+.border-black {
+  border: 1px solid variable.$bg-secondary;
+}
+
 .pin {
   animation-name: pin;
   animation-duration: 1s;
