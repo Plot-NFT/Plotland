@@ -28,8 +28,8 @@ const Home = () => {
 
         <HeroBanner />
 
-        <div className="py-5">
-          <h2 className="fw-bold">About Plotland</h2>
+        <div className="py-3 vh-100 d-flex flex-column justify-content-center">
+          <h2 className="fw-bold text-center">About Plotland</h2>
 
           <p className="text-justify text-width mx-auto">
             Plot is the new coordinate-based NFT platform for developers and
@@ -76,10 +76,17 @@ const Home = () => {
           </StatusBox.Item>
         </StatusBox.Main> */}
 
-        <div className="py-5">
-          <h2 className="mt-5 fw-bold ">Quadrant Visualization</h2>
+        <div className="py-3 vh-100 d-flex flex-column justify-content-center">
+          <h2 className="fw-bold text-center">Quadrant Visualization</h2>
 
-          <p className="mb-2 text-justify text-width mx-auto">
+          <Image
+            width={2777}
+            height={1074}
+            src="/assets/visualization.png"
+            alt="quadrant visualization"
+          />
+
+          <p className="mt-4 text-justify text-width mx-auto">
             Plot is released in four stages over four quadrants, with each
             having its own release date. Originating at the zero coordinate in
             the guinea gulf, the first quadrant includes major landmass in
@@ -89,13 +96,6 @@ const Home = () => {
             landmass in south-east Asia, Australia and Southern Africa. The
             fourth quadrant includes landmass in South America.
           </p>
-
-          <Image
-            width={2777}
-            height={1074}
-            src="/assets/visualization.png"
-            alt="quadrant visualization"
-          />
         </div>
       </Container>
 
