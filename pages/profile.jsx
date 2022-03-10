@@ -86,10 +86,6 @@ const Profile = () => {
               });
             }
           });
-
-          ethereum.on("message", async (message) => {
-            console.log(message);
-          });
         }
 
         const updateUserState = async () => {
@@ -118,8 +114,8 @@ const Profile = () => {
       }
     }, 400);
 
-    async function checkUserCollection(wallet) {
-      setCollection({ ...collection, status: "loading" });
+    async function checkUserCollection(wallet, update = false) {
+      if (!update) setCollection({ ...collection, status: "loading" });
 
       const tokenIdsInHex = await getTokenIdsByOwner(wallet);
 
@@ -177,13 +173,15 @@ const Profile = () => {
 
     if (user.wallet && collection.status === "idle") {
       checkUserCollection(user.wallet);
+
+      setInterval(() => checkUserCollection(user.wallet, true), 20 * 1000);
     }
 
     if (mint.status === "success" || mint.status === "failed") {
       setTimeout(() => {
         setMint({ status: "idle", error: "", message: "", data: null });
         setQuadrant("1");
-      }, 5000);
+      }, 7000);
     }
   }, [collection, dispatch, mint, user]);
 

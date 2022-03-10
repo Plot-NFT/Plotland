@@ -29,7 +29,7 @@ const Home = () => {
         <HeroBanner />
 
         <div className="py-3 vh-100 d-flex flex-column justify-content-center">
-          <h2 className="fw-bold text-center">About Plotland</h2>
+          <h2 className="fw-bold text-center mb-3">About Plotland</h2>
 
           <p className="text-justify text-width mx-auto">
             Plot is the new coordinate-based NFT platform for developers and
@@ -77,7 +77,7 @@ const Home = () => {
         </StatusBox.Main> */}
 
         <div className="py-3 vh-100 d-flex flex-column justify-content-center">
-          <h2 className="fw-bold text-center">Quadrant Visualization</h2>
+          <h2 className="fw-bold text-center mb-3">Quadrant Visualization</h2>
 
           <Image
             width={2777}
